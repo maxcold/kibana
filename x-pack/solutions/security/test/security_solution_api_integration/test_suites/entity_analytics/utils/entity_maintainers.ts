@@ -152,7 +152,9 @@ export const waitForMaintainerToSettle = async ({
     timeoutMs,
     async () => {
       const response = await routes.getMaintainers(200, [maintainerId]);
-      const maintainer = response.body.maintainers.find((m) => m.id === maintainerId);
+      const maintainer = response.body.maintainers.find(
+        (m: EntityMaintainerResponse) => m.id === maintainerId
+      );
       return isMaintainerStarted(maintainer);
     }
   );
@@ -166,7 +168,9 @@ export const waitForMaintainerToSettle = async ({
     timeoutMs,
     async () => {
       const response = await routes.getMaintainers(200, [maintainerId]);
-      const maintainer = response.body.maintainers.find((m) => m.id === maintainerId);
+      const maintainer = response.body.maintainers.find(
+        (m: EntityMaintainerResponse) => m.id === maintainerId
+      );
       if (!maintainer) return false;
 
       const { nextRunAt, runs } = maintainer;
